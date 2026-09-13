@@ -73,22 +73,6 @@ A hunt that returns nothing is still a documented result. The method is the prod
 | Sysmon | Process, network, image load, and process access telemetry | [Sysmon](guides/on-prem/sysmon.md) |
 | PowerShell Log Analysis | Multi-host collection, parsing, timelines, correlation | [PowerShell Log Analysis](guides/on-prem/powershell-log-analysis.md) |
 
-```text
-What am I investigating?
-        |
-        +-- Cloud logs, telemetry, or a detection rule
-        |       --> KQL
-        |
-        +-- Authentication, account changes, or service installation
-        |       --> Windows Event Logs
-        |
-        +-- Process lineage, network connections, or process access
-        |       --> Sysmon
-        |
-        +-- Collecting or correlating across multiple hosts
-                --> PowerShell Log Analysis
-```
-
 <!-- new platform sections mirror the blocks above -->
 
 Guides for AWS and Google Cloud are added alongside the first case in those environments.
