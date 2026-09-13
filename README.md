@@ -1,11 +1,12 @@
 <!--
   Conventions
   Case IDs  SOC-<AZ|AWS|GCP|ONP>-NNN; numbering restarts per platform
-  Folders   cases/<CASE-ID>-slug/ holds README + evidence always; diagrams, docs, queries as needed
+  Folders   cases/<CASE-ID>-slug/ holds README + evidence always; diagrams, docs, queries, lab as needed
   Guides    Guides/<platform>/ holds one file per interface
   Table     completed cases only; Key Finding = the result, not the topic
-  Type      how far the arc went: Threat Hunt, Investigation, Detection,
-            or Threat Hunt → Detection → Validation
+  Type      how far the arc went: Threat Hunt, Analysis, Detection,
+            or Threat Hunt > Detection > Validation
+  Access    Read-only | Contributor | Full control
   Scope     detection, hunting, incident response; identity design goes in identity-security
 -->
 
@@ -15,15 +16,15 @@ Security casework covering detection, threat hunting, incident response, and log
 
 Each case includes sanitized evidence, methodology, the queries used, findings, root-cause analysis, and recommendations.
 
-> **How to read the Type column.** Cases in training environments are read-only, so they cover investigation and recommendation: the scope a SOC analyst actually works in. Cases in my own lab carry the full arc: hunt, write the detection, validate that it fires on the technique and not on normal activity.
+> **How to read the table.** **Type** shows how far a case went: hunting and analysis, or the full arc through detection authoring and validation. **Access** shows the permission level I held, which determines what the case could cover. Both are stated in full in each case README.
 
 ---
 
 ## Cases
 
-| Case | Investigation | Type | Environment | Key Finding |
-|---|---|---|---|---|
-| **SOC-ONP-001** | [Support Session Misdirection](cases/SOC-ONP-001-support-session-misdirection/) | Threat Hunt | On-prem · own lab | *(one-line result)* |
+| Case | Name | Type | Environment | Access | Key Finding |
+|---|---|---|---|---|---|
+| **SOC-ONP-001** | [Support Session Misdirection](cases/SOC-ONP-001-support-session-misdirection/) | Threat Hunt | On-premises | *(confirm)* | *(replace: what the hunt confirmed or ruled out)* |
 
 ---
 
@@ -31,7 +32,7 @@ Each case includes sanitized evidence, methodology, the queries used, findings, 
 
 | Project | Type | Focus | Outcome |
 |---|---|---|---|
-| [SOC Metrics and KPI Reporting](cases/soc-kpi-reporting/) | Implementation | SOC operations · reporting | *(one-line outcome)* |
+| [SOC Metrics and KPI Reporting](cases/soc-kpi-reporting/) | Implementation | SOC operations, reporting | *(replace: what the metrics surfaced or enabled)* |
 
 ---
 
@@ -98,6 +99,12 @@ What am I investigating?
 <!-- new platform sections mirror the blocks above -->
 
 Guides for AWS and Google Cloud are added alongside the first case in those environments.
+
+---
+
+## Reproducible Environments
+
+Cases I build myself include the infrastructure code used to create them, under `cases/<CASE-ID>/lab/`. Where that code exists, the environment can be stood up from scratch, the technique re-executed, and the detection re-validated independently.
 
 ---
 
