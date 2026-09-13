@@ -1,7 +1,7 @@
 <!--
   Conventions
   Case IDs  SOC-<AZ|AWS|GCP|ONP>-NNN; numbering restarts per platform
-  Folders   cases/<CASE-ID>-slug/ holds README + evidence always; diagrams, docs, queries, lab as needed
+  Folders   cases/<CASE-ID>-slug/ holds README + evidence always; diagrams, docs, queries as needed
   Guides    Guides/<platform>/ holds one file per interface
   Table     completed cases only; Key Finding = the result, not the topic
   Type      how far the arc went: Threat Hunt, Analysis, Detection,
@@ -71,6 +71,17 @@ A hunt that returns nothing is still a documented result. The method is the prod
 | Interface | Best For | Guide |
 |---|---|---|
 | KQL | Log Analytics, Sentinel, Defender XDR, hunting, detection rules | [KQL](Guides/azure/kql.md) |
+| Sysmon | Endpoint telemetry forwarded into Sentinel and queried with KQL | [Sysmon](Guides/on-prem/sysmon.md) |
+
+```text
+What am I investigating?
+        |
+        +-- Cloud logs, telemetry, or a detection rule
+        |       --> KQL
+        |
+        +-- Process lineage, network connections, or process access
+                --> Sysmon
+```
 
 ### On-Premises
 
@@ -82,9 +93,6 @@ A hunt that returns nothing is still a documented result. The method is the prod
 
 ```text
 What am I investigating?
-        |
-        +-- Cloud logs, telemetry, or a detection rule
-        |       --> KQL
         |
         +-- Authentication, account changes, or service installation
         |       --> Windows Event Logs
@@ -99,12 +107,6 @@ What am I investigating?
 <!-- new platform sections mirror the blocks above -->
 
 Guides for AWS and Google Cloud are added alongside the first case in those environments.
-
----
-
-## Reproducible Environments
-
-Cases I build myself include the infrastructure code used to create them, under `cases/<CASE-ID>/lab/`. Where that code exists, the environment can be stood up from scratch, the technique re-executed, and the detection re-validated independently.
 
 ---
 
