@@ -1,6 +1,13 @@
-# Investigation Guides
+# Guides
 
-Interface references used across the cases in this repository.
+References used across the cases in this repository.
+
+## Methodology
+
+| Guide | Covers |
+|---|---|
+| [Threat Hunt Methodology](threat-hunt-methodology.md) | Hypothesis to verdict: structure, baselining, triage, and follow-up |
+| [SOC Metrics Framework](soc-metrics-framework.md) | Metric definitions, verdict categories, weekly rollup, per-rule tuning |
 
 ## Microsoft Azure
 
