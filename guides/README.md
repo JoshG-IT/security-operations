@@ -6,8 +6,8 @@ References used across the cases in this repository.
 
 | Guide | Covers |
 |---|---|
-| [Threat Hunt Methodology](threat-hunt-methodology.md) | Hypothesis to verdict: structure, baselining, triage, and follow-up |
-| [SOC Metrics Framework](soc-metrics-framework.md) | Metric definitions, verdict categories, weekly rollup, per-rule tuning |
+| [Threat Hunt Methodology](methodology/threat-hunt-methodology.md) | Hypothesis to verdict: structure, baselining, triage, and follow-up |
+| [SOC Metrics Framework](methodology/soc-metrics-framework.md) | Metric definitions, verdict categories, weekly rollup, per-rule tuning |
 
 ## Microsoft Azure
 
