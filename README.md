@@ -1,21 +1,21 @@
 <!--
   Conventions
-  Case IDs  SOC-<AZ|AWS|GCP|ONP>-NNN — numbering restarts per platform
-  Folders   cases/<CASE-ID>-slug/ — README + evidence always; diagrams, docs, queries as needed
-  Guides    Guides/<platform>/ — one file per interface
+  Case IDs  SOC-<AZ|AWS|GCP|ONP>-NNN; numbering restarts per platform
+  Folders   cases/<CASE-ID>-slug/ holds README + evidence always; diagrams, docs, queries as needed
+  Guides    Guides/<platform>/ holds one file per interface
   Table     completed cases only; Key Finding = the result, not the topic
-  Type      shows how far the arc went: Threat Hunt, Investigation, Detection,
+  Type      how far the arc went: Threat Hunt, Investigation, Detection,
             or Threat Hunt → Detection → Validation
-  Scope     detection, hunting, incident response — identity design goes in identity-security
+  Scope     detection, hunting, incident response; identity design goes in identity-security
 -->
 
 # Security Operations
 
-Security casework covering detection, threat hunting, incident response, and log analysis across cloud and on-premises environments — Microsoft Sentinel, Defender, Sysmon, Windows Event Logs, and KQL-based investigation.
+Security casework covering detection, threat hunting, incident response, and log analysis across cloud and on-premises environments: Microsoft Sentinel, Defender, Sysmon, Windows Event Logs, and KQL-based investigation.
 
 Each case includes sanitized evidence, methodology, the queries used, findings, root-cause analysis, and recommendations.
 
-> **How to read the Type column.** Cases in training environments are read-only, so they cover investigation and recommendation — the scope a SOC analyst actually works in. Cases in my own lab carry the full arc: hunt, write the detection, validate that it fires on the technique and not on normal activity.
+> **How to read the Type column.** Cases in training environments are read-only, so they cover investigation and recommendation: the scope a SOC analyst actually works in. Cases in my own lab carry the full arc: hunt, write the detection, validate that it fires on the technique and not on normal activity.
 
 ---
 
@@ -37,7 +37,7 @@ Each case includes sanitized evidence, methodology, the queries used, findings, 
 
 ## Skills Demonstrated
 
-`KQL` · `Microsoft Sentinel` · `Defender for Endpoint` · `Sysmon` · `Windows Event Logs` · `PowerShell` · `MITRE ATT&CK` · `Threat Hunting`
+`KQL` · `Microsoft Sentinel` · `Defender for Endpoint` · `Sysmon` · `Windows Event Logs` · `PowerShell` · `MITRE ATT&CK` · `Threat Hunting` · `Incident Response`
 
 ---
 
@@ -45,7 +45,7 @@ Each case includes sanitized evidence, methodology, the queries used, findings, 
 
 **Hunting**
 
-1. State the hypothesis — what behavior would I expect to see, and where?
+1. State the hypothesis: what behavior would I expect to see, and where?
 2. Identify the data source that would contain it.
 3. Build the query, starting broad before filtering.
 4. Establish what normal looks like before deciding what is anomalous.
@@ -69,24 +69,38 @@ A hunt that returns nothing is still a documented result. The method is the prod
 
 | Interface | Best For | Guide |
 |---|---|---|
-| KQL | Logs, telemetry, Log Analytics, Sentinel, Defender, event investigation | [KQL](Guides/azure/kql.md) |
+| KQL | Log Analytics, Sentinel, Defender XDR, hunting, detection rules | [KQL](Guides/azure/kql.md) |
 
 ### On-Premises
 
 | Interface | Best For | Guide |
 |---|---|---|
-| Windows Event Logs | Authentication, process creation, service installation | *(guide pending)* |
-| Sysmon | Process, network, and file telemetry | *(guide pending)* |
-| PowerShell | Log collection, parsing, and correlation | *(guide pending)* |
+| Windows Event Logs | Authentication, process creation, service installation, log tampering | [Windows Event Logs](Guides/on-prem/windows-event-logs.md) |
+| Sysmon | Process, network, image load, and process access telemetry | [Sysmon](Guides/on-prem/sysmon.md) |
+| PowerShell Log Analysis | Multi-host collection, parsing, timelines, correlation | [PowerShell Log Analysis](Guides/on-prem/powershell-log-analysis.md) |
+
+```text
+What am I investigating?
+        |
+        +-- Cloud logs, telemetry, or a detection rule
+        |       --> KQL
+        |
+        +-- Authentication, account changes, or service installation
+        |       --> Windows Event Logs
+        |
+        +-- Process lineage, network connections, or process access
+        |       --> Sysmon
+        |
+        +-- Collecting or correlating across multiple hosts
+                --> PowerShell Log Analysis
+```
 
 <!-- new platform sections mirror the blocks above -->
+
+Guides for AWS and Google Cloud are added alongside the first case in those environments.
 
 ---
 
 ## Data Handling
 
-These cases document **method and reasoning**, not training answer keys. Hostnames, usernames, internal IP ranges, tenant and subscription IDs, and environment-specific identifiers are redacted from public evidence.
-
----
-
-Scenario sources are credited within each case. All analysis, evidence collection, findings, and documentation are my own work.
+These cases document method and reasoning. Hostnames, usernames, internal IP ranges, tenant and subscription IDs, and environment-specific identifiers are redacted from public evidence.
